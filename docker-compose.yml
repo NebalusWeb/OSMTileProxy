@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  street-map-tile-proxy:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+      target: base
+    container_name: street-map-tile-proxy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./cache:/var/cache/nginx/tiles
+    restart: unless-stopped
